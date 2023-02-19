@@ -19,7 +19,10 @@
 
 package com.zynksoftware.documentscanner.common.extensions
 
+import android.annotation.SuppressLint
 import android.graphics.ImageFormat
+import android.media.Image
+import android.os.Build
 import androidx.camera.core.ImageProxy
 import org.opencv.core.CvType
 import org.opencv.core.Mat

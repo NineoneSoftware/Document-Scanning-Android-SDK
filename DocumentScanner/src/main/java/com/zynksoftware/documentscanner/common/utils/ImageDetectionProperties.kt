@@ -35,7 +35,9 @@ internal class ImageDetectionProperties(
     }
 
     fun isNotValidImage(approx: MatOfPoint2f): Boolean {
-        return isEdgeTouching || isAngleNotCorrect(approx) || isDetectedAreaBelowLimits()
+
+        return isEdgeTouching || isAngleNotCorrect(approx)
+                // --> This seems to be an issue.. || isDetectedAreaBelowLimits()
     }
 
     private fun isAngleNotCorrect(approx: MatOfPoint2f): Boolean {

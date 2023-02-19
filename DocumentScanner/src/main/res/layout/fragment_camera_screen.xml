@@ -26,31 +26,11 @@
                 android:layout_centerVertical="true"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/zdc_small_padding"
-                android:src="@drawable/zdc_flash_off"
+                android:src="@drawable/zdc_flash_off_24"
                 android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/autoButton"
-                style="@style/ZdcTextView14sp.White"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/zdc_x_small_padding"
-                android:text="@string/zdc_auto" />
 
         </RelativeLayout>
-
-        <ImageView
-            android:id="@+id/galleryButton"
-            android:layout_width="@dimen/zdc_gallery_button_dimens"
-            android:layout_height="@dimen/zdc_gallery_button_dimens"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="@dimen/zdc_medium_padding"
-            android:layout_marginBottom="@dimen/zdc_medium_padding"
-            android:src="@drawable/zdc_gallery_icon" />
 
         <View
             android:id="@+id/cameraCaptureButton"

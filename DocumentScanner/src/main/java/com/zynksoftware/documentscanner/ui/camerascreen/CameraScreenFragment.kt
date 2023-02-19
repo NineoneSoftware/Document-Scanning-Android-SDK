@@ -90,21 +90,7 @@ internal class CameraScreenFragment: BaseFragment(), ScanSurfaceListener  {
         flashButton.setOnClickListener {
             switchFlashState()
         }
-        galleryButton.setOnClickListener {
-            checkForStoragePermissions()
-        }
-        autoButton.setOnClickListener {
-            toggleAutoManualButton()
-        }
-    }
 
-    private fun toggleAutoManualButton() {
-        scanSurfaceView.isAutoCaptureOn = !scanSurfaceView.isAutoCaptureOn
-        if (scanSurfaceView.isAutoCaptureOn) {
-            autoButton.text = getString(R.string.zdc_auto)
-        } else {
-            autoButton.text = getString(R.string.zdc_manual)
-        }
     }
 
     private fun checkForCameraPermissions() {
@@ -120,24 +106,6 @@ internal class CameraScreenFragment: BaseFragment(), ScanSurfaceListener  {
                     }
                     else -> {
                         onError(DocumentScannerErrorModel(DocumentScannerErrorModel.ErrorMessage.CAMERA_PERMISSION_REFUSED_GO_TO_SETTINGS))
-                    }
-                }
-            }
-    }
-
-    private fun checkForStoragePermissions() {
-        RxPermissions(this)
-            .requestEach(Manifest.permission.READ_EXTERNAL_STORAGE)
-            .subscribe { permission ->
-                when {
-                    permission.granted -> {
-                        selectImageFromGallery()
-                    }
-                    permission.shouldShowRequestPermissionRationale -> {
-                        onError(DocumentScannerErrorModel(DocumentScannerErrorModel.ErrorMessage.STORAGE_PERMISSION_REFUSED_WITHOUT_NEVER_ASK_AGAIN))
-                    }
-                    else -> {
-                        onError(DocumentScannerErrorModel(DocumentScannerErrorModel.ErrorMessage.STORAGE_PERMISSION_REFUSED_GO_TO_SETTINGS))
                     }
                 }
             }
@@ -169,13 +137,6 @@ internal class CameraScreenFragment: BaseFragment(), ScanSurfaceListener  {
 
     override fun hideFlash() {
         flashButton?.hide()
-    }
-
-    private fun selectImageFromGallery() {
-        val photoPickerIntent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-        photoPickerIntent.addCategory(Intent.CATEGORY_OPENABLE)
-        photoPickerIntent.type = "image/*"
-        startActivityForResult(photoPickerIntent, GALLERY_REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -232,10 +193,10 @@ internal class CameraScreenFragment: BaseFragment(), ScanSurfaceListener  {
     }
 
     override fun showFlashModeOn() {
-        flashButton.setImageResource(R.drawable.zdc_flash_on)
+        flashButton.setImageResource(R.drawable.zdc_flash_on_24)
     }
 
     override fun showFlashModeOff() {
-        flashButton.setImageResource(R.drawable.zdc_flash_off)
+        flashButton.setImageResource(R.drawable.zdc_flash_off_24)
     }
 }

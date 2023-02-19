@@ -156,7 +156,7 @@ internal class ScanSurfaceView : FrameLayout {
             .setTargetRotation(Surface.ROTATION_0)
             .build()
 
-        imageAnalysis?.setAnalyzer(ContextCompat.getMainExecutor(context), { image ->
+        imageAnalysis?.setAnalyzer(ContextCompat.getMainExecutor(context)) { image ->
             if (isAutoCaptureOn) {
                 try {
                     val mat = image.yuvToRgba()
@@ -164,20 +164,30 @@ internal class ScanSurfaceView : FrameLayout {
                     val largestQuad = nativeClass.detectLargestQuadrilateral(mat)
                     mat.release()
                     if (null != largestQuad) {
-                        drawLargestRect(largestQuad.contour, largestQuad.points, originalPreviewSize)
+                        drawLargestRect(
+                            largestQuad.contour,
+                            largestQuad.points,
+                            originalPreviewSize
+                        )
                     } else {
                         clearAndInvalidateCanvas()
                     }
                 } catch (e: Exception) {
                     Log.e(TAG, ErrorMessage.DETECT_LARGEST_QUADRILATERAL_FAILED.error, e)
-                    listener.onError(DocumentScannerErrorModel(ErrorMessage.DETECT_LARGEST_QUADRILATERAL_FAILED, e))
+                    listener.onError(
+                        DocumentScannerErrorModel(
+                            ErrorMessage.DETECT_LARGEST_QUADRILATERAL_FAILED,
+                            e
+                        )
+                    )
                     clearAndInvalidateCanvas()
                 }
             } else {
+
                 clearAndInvalidateCanvas()
             }
             image.close()
-        })
+        }
 
         camera = cameraProvider!!.bindToLifecycle(lifecycleOwner, CameraSelector.DEFAULT_BACK_CAMERA, preview, imageAnalysis, imageCapture)
     }

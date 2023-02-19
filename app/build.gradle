@@ -3,13 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.zynksoftware.documentscannersample"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 33
         versionCode 6
         versionName "1.0.0"
 
@@ -52,6 +52,6 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 
-    implementation 'com.github.zynkware:Document-Scanning-Android-SDK:1.0.1'
-//    implementation project(":DocumentScanner")
+//    implementation 'com.github.zynkware:Document-Scanning-Android-SDK:1.0.1'
+    implementation project(":DocumentScanner")
 }
